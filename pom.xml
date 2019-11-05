@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.opentracing.contrib</groupId>
+  <artifactId>opentracing-orbit</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>OpenTracing instrumentation for Orbit framework</description>
+  <url>https://github.com/orbit-legacy/orbit-tracing</url>
+
+  <scm>
+    <url>https://github.com/orbit-legacy/orbit-tracing</url>
+    <connection>scm:git:git://github.com/orbit-legacy/orbit-tracing.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com:orbit-legacy/orbit-tracing.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+    <version.junit>4.12</version.junit>
+    <new.version.io.opentracing>0.33.0</new.version.io.opentracing>
+    <version.io.opentracing>0.31.0</version.io.opentracing>
+    <version.cloud.orbit>1.10.1</version.cloud.orbit>
+
+    <!-- plugins -->
+    <version.maven-deploy-plugin>2.8.2</version.maven-deploy-plugin>
+    <version.maven-release-plugin>2.5.3</version.maven-release-plugin>
+    <version.maven-source-plugin>3.0.1</version.maven-source-plugin>
+    <version.maven-javadoc-plugin>2.10.4</version.maven-javadoc-plugin>
+    <version.io.takari-maven>0.3.4</version.io.takari-maven>
+    <version.io.zikin.centralsync-maven-plugin>0.1.0</version.io.zikin.centralsync-maven-plugin>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.opentracing</groupId>
+      <artifactId>opentracing-api</artifactId>
+      <version>${version.io.opentracing}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.opentracing</groupId>
+      <artifactId>opentracing-noop</artifactId>
+      <version>${version.io.opentracing}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.opentracing</groupId>
+      <artifactId>opentracing-mock</artifactId>
+      <version>${version.io.opentracing}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.opentracing</groupId>
+      <artifactId>opentracing-util</artifactId>
+      <version>${version.io.opentracing}</version>
+    </dependency>
+    <dependency>
+	  <groupId>cloud.orbit</groupId>
+	  <artifactId>orbit-runtime</artifactId>
+	  <version>${version.cloud.orbit}</version>
+ 	</dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${version.junit}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>bintray</id>
+      <url>https://api.bintray.com/maven/opentracing/maven/opentracing-orbit/;publish=1</url>
+    </repository>
+    <snapshotRepository>
+      <id>jfrog-snapshots</id>
+      <url>http://oss.jfrog.org/artifactory/oss-snapshot-local</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.1.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+	    <plugin>
+	        <artifactId>maven-compiler-plugin</artifactId>
+			    <version>3.8.1</version>
+	        <configuration>
+	            <source>1.8</source>
+	            <target>1.8</target>
+	        </configuration>
+	    </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+      <profile>
+          <id>withoutTests</id>
+          <properties>
+              <maven.test.skip>true</maven.test.skip>
+          </properties>
+      </profile>
+  </profiles>
+</project>

@@ -1,0 +1,6 @@
+target/
+*.prefs
+*.factorypath
+*.classpath
+*.project
+bin/
