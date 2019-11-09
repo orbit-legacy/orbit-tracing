@@ -152,8 +152,15 @@ public class ActorLifetimeExtension implements LifetimeExtension
 		// Build the lifetime event span for the whole activation period			
 		Span actorSpan = ActorLifetimeSpan.getInstance().getActorSpan(actor);
 		if ( actorSpan != null) {
-			long startTimestamp = Long.valueOf(actorSpan.getBaggageItem(PRE_ACTIVATION_TIME));
-			buildLifetimeEventSpan(actor, "Activation", startTimestamp);
+			try {
+				String preActivationTime = actorSpan.getBaggageItem(PRE_ACTIVATION_TIME);
+				if ( preActivationTime != null) {
+					long startTimestamp = Long.valueOf( preActivationTime);
+					buildLifetimeEventSpan(actor, "Activation", startTimestamp);
+				}
+			} catch( Exception ex) {
+				// Do nothing as the span operation should be hidden from the main app
+			}
 		}
 		
 		return Task.done();
@@ -179,8 +186,15 @@ public class ActorLifetimeExtension implements LifetimeExtension
 		// Build the lifetime event span for the whole activation period			
 		Span actorSpan = ActorLifetimeSpan.getInstance().getActorSpan(actor);
 		if ( actorSpan != null) {
-			long startTimestamp = Long.valueOf(actorSpan.getBaggageItem(PRE_DEACTIVATION_TIME));
-			buildLifetimeEventSpan(actor, "DeActivation", startTimestamp);
+			try {
+				String preDeactivationTime = actorSpan.getBaggageItem(PRE_DEACTIVATION_TIME);
+				if ( preDeactivationTime != null) {
+					long startTimestamp = Long.valueOf( preDeactivationTime);
+					buildLifetimeEventSpan(actor, "DeActivation", startTimestamp);
+				}
+			} catch( Exception ex) {
+				// Do nothing as the span operation should be hidden from the main app
+			}
 		}
 		
 		// Remove the actor span from the global data structure 
