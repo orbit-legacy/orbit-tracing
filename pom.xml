@@ -4,7 +4,7 @@
 
   <groupId>io.opentracing.contrib</groupId>
   <artifactId>opentracing-orbit</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <name>${project.groupId}:${project.artifactId}</name>
   <description>OpenTracing instrumentation for Orbit framework</description>
