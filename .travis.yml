@@ -7,3 +7,5 @@ jdk:
   - openjdk9
   - oraclejdk10
   - openjdk10
+before_install:
+  - chmod +x mvnw
