@@ -18,7 +18,7 @@
   </scm>
 
   <properties>
-    <version.junit>4.12</version.junit>
+    <version.junit>4.13.1</version.junit>
     <new.version.io.opentracing>0.33.0</new.version.io.opentracing>
     <version.io.opentracing>0.31.0</version.io.opentracing>
     <version.cloud.orbit>1.10.1</version.cloud.orbit>
